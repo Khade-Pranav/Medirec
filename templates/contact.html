@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Contact - MediRec</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/public/style.css" type="text/css">
+  </head>
+  <body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+  <div class="container">
+      <div class="logo">
+          <a href="/">
+              <img class="myImg" src="{{url_for('static',filename='logo.jpg')}}" alt="logo">
+          </a>
+      </div>
+    <a class="navbar-brand fw-bold " href="/">MediRec</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+            aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/contact">Contact</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/history">History</a>
+        </li>
+      </ul>
+      <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
+        <i class="fas fa-moon" id="theme-icon"></i>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="container mt-4">
+    <a href="/" class="back-arrow">
+        <i class="fas fa-arrow-left"></i> Back to Home
+    </a>
+</div>
+
+<h1 class="text-center main-title">Contact Us</h1>
+
+<div class="container mt-4">
+    <!-- Contact Introduction -->
+    <div class="about-section">
+        <div class="section-header">
+            <h2><i class="fas fa-envelope"></i> Get in Touch</h2>
+        </div>
+        <div class="section-content">
+            <p>Have questions about MediRec or need support? Feel free to reach out to our development team. We're here to help and would love to hear your feedback!</p>
+            <div class="alert" style="background: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-primary);">
+                <i class="fas fa-info-circle"></i> <strong>Note:</strong> This is an educational project. For actual medical emergencies, please contact healthcare professionals or emergency services immediately.
+            </div>
+        </div>
+    </div>
+
+    <!-- Team Contact Cards -->
+    <div class="about-section">
+        <div class="section-header">
+            <h2><i class="fas fa-users"></i> Development Team</h2>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-card">
+                <div class="contact-avatar">
+                    <div class="avatar-placeholder">
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+                <div class="contact-info">
+                    <h4>Vrushabh Hirab</h4>
+                    <p class="roll-number">125B2C005</p>
+                    <p class="role"><i class="fas fa-code"></i> Backend Developer & ML Engineer</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:vrushabh.hirab25@pccoepune.org">vrushabh.hirab25@pccoepune.org</a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:+917499340612">+91 7499340612</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-card">
+                <div class="contact-avatar">
+                    <div class="avatar-placeholder">
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+                <div class="contact-info">
+                    <h4>Pushkar Bhoge</h4>
+                    <p class="roll-number">125B2C006</p>
+                    <p class="role"><i class="fas fa-palette"></i> Frontend Developer & UI/UX Designer</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:pushkar.bhoge25@pccoepune.org">pushkar.bhoge25@pccoepune.org</a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:+917058895400">+91 7058895400</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-card">
+                <div class="contact-avatar">
+                    <div class="avatar-placeholder">
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+                <div class="contact-info">
+                    <h4>Pranav Khade</h4>
+                    <p class="roll-number">125B2C007</p>
+                    <p class="role"><i class="fas fa-database"></i> Data Analyst & System Integrator</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:pranav.khade25@pccoepune.org">pranav.khade25@pccoepune.org</a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:+919172298185">+91 9172298185</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Information -->
+    <div class="about-section">
+        <div class="section-header">
+            <h2><i class="fas fa-graduation-cap"></i> Academic Information</h2>
+        </div>
+        <div class="academic-info">
+            <div class="info-grid">
+                <div class="info-item">
+                    <i class="fas fa-university"></i>
+                    <div>
+                        <h5>Institution</h5>
+                        <p>Pimpri Chinchwad College of Engineering (PCCOE), Pune</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-book"></i>
+                    <div>
+                        <h5>Course</h5>
+                        <p>Computer Engineering (Artificial Intelligence and Machine Learning)</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-calendar"></i>
+                    <div>
+                        <h5>Academic Year</h5>
+                        <p>2nd Year, 3rd Semester</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-project-diagram"></i>
+                    <div>
+                        <h5>Project Type</h5>
+                        <p>Machine Learning</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Contact Form -->
+    <div class="about-section">
+        <div class="section-header">
+            <h2><i class="fas fa-paper-plane"></i> Quick Message</h2>
+        </div>
+        <div class="contact-form">
+            <form>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="name" class="form-label">Your Name</label>
+                        <input type="text" class="form-control" id="name" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="email" class="form-label">Your Email</label>
+                        <input type="email" class="form-control" id="email" required>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="subject" class="form-label">Subject</label>
+                    <input type="text" class="form-control" id="subject" required>
+                </div>
+                <div class="mb-3">
+                    <label for="message" class="form-label">Message</label>
+                    <textarea class="form-control" id="message" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-paper-plane"></i> Send Message
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<script>
+    function toggleTheme() {
+        const body = document.body;
+        const themeIcon = document.getElementById('theme-icon');
+        
+        if (body.getAttribute('data-theme') === 'dark') {
+            body.removeAttribute('data-theme');
+            themeIcon.className = 'fas fa-moon';
+            localStorage.setItem('theme', 'light');
+        } else {
+            body.setAttribute('data-theme', 'dark');
+            themeIcon.className = 'fas fa-sun';
+            localStorage.setItem('theme', 'dark');
+        }
+    }
+
+    // Load saved theme
+    document.addEventListener('DOMContentLoaded', function() {
+        const savedTheme = localStorage.getItem('theme');
+        const themeIcon = document.getElementById('theme-icon');
+        
+        if (savedTheme === 'dark') {
+            document.body.setAttribute('data-theme', 'dark');
+            themeIcon.className = 'fas fa-sun';
+        }
+    });
+
+    // Handle form submission
+    document.querySelector('form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Thank you for your message! This is a demo form. In a real application, this would send your message to the development team.');
+    });
+</script>
+  </body>
+</html>

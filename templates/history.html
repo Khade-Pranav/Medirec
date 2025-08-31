@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Search History - MediRec</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/public/style.css" type="text/css">
+  </head>
+  <body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+  <div class="container">
+      <div class="logo">
+          <a href="/">
+              <img class="myImg" src="{{url_for('static',filename='logo.jpg')}}" alt="logo">
+          </a>
+      </div>
+    <a class="navbar-brand fw-bold " href="/">MediRec</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+            aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contact</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/history">History</a>
+        </li>
+      </ul>
+      <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
+        <i class="fas fa-moon" id="theme-icon"></i>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="container mt-4">
+    <a href="/" class="back-arrow">
+        <i class="fas fa-arrow-left"></i> Back to Home
+    </a>
+</div>
+
+<h1 class="text-center main-title">Search History</h1>
+
+<div class="container mt-4">
+    {% if history %}
+        <div class="row">
+            {% for entry in history %}
+            <div class="col-md-6 mb-4">
+                <div class="card" style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 16px;">
+                    <div class="card-header" style="background: var(--gradient); color: white; border-radius: 16px 16px 0 0;">
+                        <h5 class="mb-0">{{ entry.timestamp }}</h5>
+                    </div>
+                    <div class="card-body" style="background: var(--bg-primary); color: var(--text-primary);">
+                        <h6 class="card-title" style="color: var(--accent);">Predicted Disease:</h6>
+                        <p class="card-text disease-name">{{ entry.disease }}</p>
+                        
+                        <h6 class="card-title" style="color: var(--accent);">Symptoms Searched:</h6>
+                        <ul class="list-unstyled">
+                            {% for symptom in entry.symptoms %}
+                                <li><i class="fas fa-check-circle" style="color: var(--mint);"></i> {{ symptom.replace('_', ' ') }}</li>
+                            {% endfor %}
+                        </ul>
+                        
+                        <div class="mt-3 d-flex gap-2">
+                            <a href="/show_history/{{ loop.index0 }}" class="btn btn-sm" style="background: var(--gradient); color: white; border-radius: 8px;">
+                                <i class="fas fa-eye"></i> Show
+                            </a>
+                            <a href="/delete_history/{{ loop.index0 }}" class="btn btn-sm btn-danger" style="border-radius: 8px;">
+                                <i class="fas fa-trash"></i> Delete
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="text-center" style="margin-top: 5rem;">
+            <i class="fas fa-history" style="font-size: 4rem; color: var(--text-secondary); margin-bottom: 2rem;"></i>
+            <h3 style="color: var(--text-secondary);">No Search History</h3>
+            <p style="color: var(--text-secondary);">Start searching for symptoms to see your history here.</p>
+            <a href="/index" class="btn btn-primary">Start Searching</a>
+        </div>
+    {% endif %}
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<script>
+    function toggleTheme() {
+        const body = document.body;
+        const themeIcon = document.getElementById('theme-icon');
+        
+        if (body.getAttribute('data-theme') === 'dark') {
+            body.removeAttribute('data-theme');
+            themeIcon.className = 'fas fa-moon';
+            localStorage.setItem('theme', 'light');
+        } else {
+            body.setAttribute('data-theme', 'dark');
+            themeIcon.className = 'fas fa-sun';
+            localStorage.setItem('theme', 'dark');
+        }
+    }
+
+    // Load saved theme
+    document.addEventListener('DOMContentLoaded', function() {
+        const savedTheme = localStorage.getItem('theme');
+        const themeIcon = document.getElementById('theme-icon');
+        
+        if (savedTheme === 'dark') {
+            document.body.setAttribute('data-theme', 'dark');
+            themeIcon.className = 'fas fa-sun';
+        }
+    });
+    
+
+</script>
+  </body>
+</html>

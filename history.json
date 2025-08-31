@@ -1,0 +1,53 @@
+[
+  {
+    "symptoms": [
+      "blister",
+      "red_sore_around_nose",
+      "yellow_crust_ooze"
+    ],
+    "disease": "Impetigo",
+    "timestamp": "2025-09-01 00:54:49"
+  },
+  {
+    "symptoms": [
+      "blister",
+      "red_sore_around_nose",
+      "yellow_crust_ooze"
+    ],
+    "disease": "Impetigo",
+    "timestamp": "2025-09-01 00:53:17"
+  },
+  {
+    "symptoms": [
+      "headache",
+      "breathlessness"
+    ],
+    "disease": "Paralysis (brain hemorrhage)",
+    "timestamp": "2025-09-01 00:46:17"
+  },
+  {
+    "symptoms": [
+      "continuous_sneezing",
+      "nodal_skin_eruptions",
+      "burning_micturition"
+    ],
+    "disease": "Fungal infection",
+    "timestamp": "2025-09-01 00:46:00"
+  },
+  {
+    "symptoms": [
+      "headache",
+      "pain_behind_the_eyes"
+    ],
+    "disease": "Paralysis (brain hemorrhage)",
+    "timestamp": "2025-09-01 00:31:40"
+  },
+  {
+    "symptoms": [
+      "headache",
+      "pain_behind_the_eyes"
+    ],
+    "disease": "Paralysis (brain hemorrhage)",
+    "timestamp": "2025-09-01 00:29:39"
+  }
+]

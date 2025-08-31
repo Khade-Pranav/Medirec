@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MediRec</title>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/public/style.css" type="text/css">
+  </head>
+  <body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+  <div class="container">
+      <div class="logo">
+          <a href="/">
+              <img class="myImg" src="{{url_for('static',filename='logo.jpg')}}" alt="logo">
+          </a>
+      </div>
+    <a class="navbar-brand fw-bold " href="/">MediRec</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+            aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contact</a>
+        </li>
+
+
+          <li class="nav-item">
+          <a class="nav-link" href="/history">History</a>
+        </li>
+      </ul>
+      <form class="d-flex ms-lg-3" role="search">
+        <input class="form-control me-2 rounded-pill" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-success rounded-pill px-3" type="submit">Search</button>
+      </form>
+      <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
+        <i class="fas fa-moon" id="theme-icon"></i>
+      </button>
+    </div>
+  </div>
+</nav>
+
+
+    <h1 class="text-center main-title">Medicine Recommendation Center</h1>
+
+    <div class="container mt-3 my-4 form-container">
+        <form action="/predict" method="post">
+            <div class="form-group">
+                <label style="margin-bottom:6px" for="symptoms">Type Symptoms</label>
+                <input type="text" class="form-control" id="symptoms" name="symptoms" placeholder="Start typing symptoms... (e.g., itching, vomiting, coughing)" autocomplete="off">
+                <div id="suggestions" class="suggestions-dropdown"></div>
+            </div>
+            <br>
+            {% if error %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endif %}
+            <button type="submit" class="btn btn-primary">Get Recommendations</button>
+
+        </form>
+    </div>
+
+
+
+    {% if predicted_disease %}
+        <div class="container mt-4">
+            <a href="/" class="back-arrow">
+                <i class="fas fa-arrow-left"></i> Back to Search
+            </a>
+        </div>
+        <h1 class="text-center mt-4 my-4 ">Results</h1>
+        <div class="container">
+            <div class="result-container">
+            <button class="toggle-button btn-disease" data-bs-toggle="modal" data-bs-target="#diseaseModal">Disease</button>
+            <button class="toggle-button btn-description" data-bs-toggle="modal" data-bs-target="#descriptionModal">Description</button>
+            <button class="toggle-button btn-precaution" data-bs-toggle="modal" data-bs-target="#precautionModal">Precaution</button>
+            <button class="toggle-button btn-medication" data-bs-toggle="modal" data-bs-target="#medicationsModal">Medication</button>
+            <button class="toggle-button btn-workout" data-bs-toggle="modal" data-bs-target="#workoutsModal">Workouts</button>
+            <button class="toggle-button btn-diet" data-bs-toggle="modal" data-bs-target="#dietsModal">Diets</button>
+
+        </div>
+        
+        <!-- Comprehensive Information Table -->
+        <div class="container mt-4">
+            <div class="d-flex justify-content-end mb-3">
+                <a href="/download_pdf" class="btn" style="background: var(--gradient); color: white; border-radius: 8px;">
+                    <i class="fas fa-download"></i> Download PDF
+                </a>
+            </div>
+            <table class="table info-table" id="results-table">
+                <thead>
+                    <tr>
+                        <th scope="col">Category</th>
+                        <th scope="col">Information</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Predicted Disease</strong></td>
+                        <td><span class="disease-name">{{ predicted_disease }}</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Description</strong></td>
+                        <td>{{ dis_des }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Precautions</strong></td>
+                        <td>
+                            <ul>
+                                {% for j in dis_pre %}
+                                    {% for i in j %}
+                                        <li>{{ i }}</li>
+                                    {% endfor %}
+                                {% endfor %}
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Medications</strong></td>
+                        <td>
+                            <ul>
+                                {% for i in dis_med %}
+                                    <li>{{ i }}</li>
+                                {% endfor %}
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Recommended Workouts</strong></td>
+                        <td>
+                            <ul>
+                                {% for i in dis_wrkout %}
+                                    <li>{{ i }}</li>
+                                {% endfor %}
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Dietary Recommendations</strong></td>
+                        <td>
+                            <ul>
+                                {% for i in dis_diet %}
+                                    <li>{{ i }}</li>
+                                {% endfor %}
+                            </ul>
+                        </td>
+                    </tr>
+                    {% if external_links %}
+                    <tr>
+                        <td><strong>External Resources</strong></td>
+                        <td>
+                            <div class="external-links">
+                                <a href="{{ external_links.wikipedia }}" target="_blank" class="resource-link wiki-link">
+                                    <i class="fab fa-wikipedia-w"></i> More Info (Wikipedia)
+                                </a>
+                                <a href="{{ external_links.pharmeasy }}" target="_blank" class="resource-link medicine-link">
+                                    <i class="fas fa-pills"></i> Buy Medicine (PharmEasy)
+                                </a>
+                                <a href="{{ external_links.youtube_diet }}" target="_blank" class="resource-link youtube-link">
+                                    <i class="fab fa-youtube"></i> Diet Videos
+                                </a>
+                                <a href="{{ external_links.youtube_workout }}" target="_blank" class="resource-link youtube-link">
+                                    <i class="fab fa-youtube"></i> Workout Videos
+                                </a>
+                                <a href="{{ external_links.youtube_precaution }}" target="_blank" class="resource-link youtube-link">
+                                    <i class="fab fa-youtube"></i> Precaution Videos
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% endif %}
+
+<!-- Disease Modal -->
+    <div class="modal fade" id="diseaseModal" tabindex="-1" aria-labelledby="diseaseModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #020606; color:white;"> <!-- Set header background color inline -->
+                    <h5 class="modal-title" id="diseaseModalLabel">Predicted Disease</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="background-color:modal-body-color;"> <!-- Set modal body background color inline -->
+                    <p>{{ predicted_disease }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Description Modal -->
+    <div class="modal fade" id="descriptionModal" tabindex="-1" aria-labelledby="descriptionModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #020606; color:white;">
+                    <h5 class="modal-title" id="descriptionModalLabel">Description</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>{{ dis_des }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- Precaution Modal -->
+    <div class="modal fade" id="precautionModal" tabindex="-1" aria-labelledby="precautionModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #020606; color:white;">
+                    <h5 class="modal-title" id="precautionModalLabel">Precaution</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                        {% for j in dis_pre %}
+                            {% for i in j %}
+                                <li>{{ i }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- Medications Modal -->
+    <div class="modal fade" id="medicationsModal" tabindex="-1" aria-labelledby="medicationsModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #020606; color:white;">
+                    <h5 class="modal-title" id="medicationsModalLabel">Medications</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                      {% for i in dis_med %}
+                        <li>{{ i }}</li>
+                      {% endfor %}
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Workouts Modal -->
+    <div class="modal fade" id="workoutsModal" tabindex="-1" aria-labelledby="workoutsModalLabel" aria-hidden="true">
+        <div class="modal-dialog" >
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #020606; color:white;">
+                    <h5 class="modal-title" id="workoutsModalLabel">Workouts</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                        {% for i in dis_wrkout %}
+                            <li>{{ i }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Diets Modal -->
+    <div class="modal fade" id="dietsModal" tabindex="-1" aria-labelledby="dietsModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #020606; color:white;">
+                    <h5 class="modal-title" id="dietsModalLabel">Diets</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                      {% for i in dis_diet %}
+                        <li>{{ i }}</li>
+                      {% endfor %}
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById('theme-icon');
+            
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                themeIcon.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                themeIcon.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Load saved theme
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme');
+            const themeIcon = document.getElementById('theme-icon');
+            
+            if (savedTheme === 'dark') {
+                document.body.setAttribute('data-theme', 'dark');
+                themeIcon.className = 'fas fa-sun';
+            }
+            
+            // Initialize autocomplete
+            initializeAutocomplete();
+        });
+        
+        let symptomsData = [];
+        let selectedSymptoms = [];
+        
+        async function initializeAutocomplete() {
+            try {
+                const response = await fetch('/api/symptoms');
+                symptomsData = await response.json();
+                setupAutocomplete();
+            } catch (error) {
+                console.error('Error loading symptoms:', error);
+            }
+        }
+        
+        function setupAutocomplete() {
+            const input = document.getElementById('symptoms');
+            const suggestions = document.getElementById('suggestions');
+            let currentFocus = -1;
+            
+            input.addEventListener('input', function() {
+                const value = this.value.toLowerCase();
+                const lastComma = value.lastIndexOf(',');
+                const currentSymptom = value.substring(lastComma + 1).trim();
+                
+                if (currentSymptom.length < 1) {
+                    suggestions.style.display = 'none';
+                    return;
+                }
+                
+                const matches = symptomsData.filter(symptom => 
+                    symptom.toLowerCase().includes(currentSymptom) && 
+                    !selectedSymptoms.includes(symptom)
+                ).slice(0, 8);
+                
+                if (matches.length > 0) {
+                    suggestions.innerHTML = matches.map(symptom => 
+                        `<div class="suggestion-item" data-symptom="${symptom}">${symptom.replace(/_/g, ' ')}</div>`
+                    ).join('');
+                    suggestions.style.display = 'block';
+                    currentFocus = -1;
+                } else {
+                    suggestions.style.display = 'none';
+                }
+            });
+            
+            input.addEventListener('keydown', function(e) {
+                const items = suggestions.querySelectorAll('.suggestion-item');
+                if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    currentFocus = currentFocus < items.length - 1 ? currentFocus + 1 : 0;
+                    setActive(items);
+                } else if (e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    currentFocus = currentFocus > 0 ? currentFocus - 1 : items.length - 1;
+                    setActive(items);
+                } else if (e.key === 'Enter' && currentFocus >= 0) {
+                    e.preventDefault();
+                    items[currentFocus].click();
+                }
+            });
+            
+            suggestions.addEventListener('click', function(e) {
+                if (e.target.classList.contains('suggestion-item')) {
+                    const symptom = e.target.dataset.symptom;
+                    const currentValue = input.value;
+                    const lastComma = currentValue.lastIndexOf(',');
+                    
+                    if (lastComma >= 0) {
+                        input.value = currentValue.substring(0, lastComma + 1) + ' ' + symptom + ', ';
+                    } else {
+                        input.value = symptom + ', ';
+                    }
+                    
+                    selectedSymptoms.push(symptom);
+                    suggestions.style.display = 'none';
+                    input.focus();
+                }
+            });
+            
+            document.addEventListener('click', function(e) {
+                if (!input.contains(e.target) && !suggestions.contains(e.target)) {
+                    suggestions.style.display = 'none';
+                }
+            });
+            
+            function setActive(items) {
+                items.forEach((item, index) => {
+                    item.classList.toggle('highlighted', index === currentFocus);
+                });
+            }
+        }
+    </script>
+  </body>
+</html>

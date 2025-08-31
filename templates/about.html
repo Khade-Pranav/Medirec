@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>About - MediRec</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/public/style.css" type="text/css">
+  </head>
+  <body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+  <div class="container">
+      <div class="logo">
+          <a href="/">
+              <img class="myImg" src="{{url_for('static',filename='logo.jpg')}}" alt="logo">
+          </a>
+      </div>
+    <a class="navbar-brand fw-bold " href="/">MediRec</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+            aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/about">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contact</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/history">History</a>
+        </li>
+      </ul>
+      <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
+        <i class="fas fa-moon" id="theme-icon"></i>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="container mt-4">
+    <a href="/" class="back-arrow">
+        <i class="fas fa-arrow-left"></i> Back to Home
+    </a>
+</div>
+
+<h1 class="text-center main-title">About MediRec</h1>
+
+<div class="container mt-4">
+    <!-- Project Overview -->
+    <div class="about-section">
+        <div class="section-header">
+            <h2><i class="fas fa-info-circle"></i> Project Overview</h2>
+        </div>
+        <div class="section-content">
+            <p>MediRec is an intelligent Medicine Recommendation System developed as a <strong>Computer Engineering Project (CEP)</strong> for <strong>2nd Year, 3rd Semester</strong>. This system uses Machine Learning algorithms to predict diseases based on user-input symptoms and provides comprehensive medical recommendations including medications, diet plans, workout routines, and precautionary measures.</p>
+            
+            <div class="project-features">
+                <h4>Key Features:</h4>
+                <ul>
+                    <li><i class="fas fa-brain"></i> AI-powered disease prediction using Support Vector Machine (SVM)</li>
+                    <li><i class="fas fa-search"></i> Smart symptom autocomplete with 132 medical symptoms</li>
+                    <li><i class="fas fa-pills"></i> Comprehensive medication recommendations</li>
+                    <li><i class="fas fa-utensils"></i> Personalized diet and workout suggestions</li>
+                    <li><i class="fas fa-history"></i> Search history tracking and management</li>
+                    <li><i class="fas fa-file-pdf"></i> PDF report generation for medical records</li>
+                    <li><i class="fas fa-external-link-alt"></i> External resource integration (Wikipedia, YouTube, PharmEasy)</li>
+                    <li><i class="fas fa-moon"></i> Dark/Light theme toggle</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Team Members -->
+    <div class="about-section">
+        <div class="section-header">
+            <h2><i class="fas fa-users"></i> Development Team</h2>
+        </div>
+        <div class="team-grid">
+            <div class="team-member">
+                <div class="member-photo">
+                    <div class="avatar-placeholder">
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+                <div class="member-info">
+                    <h4>Vrushabh Hirab</h4>
+                    <p class="roll-number">125B2C005</p>
+                    <p class="role"><i class="fas fa-code"></i> Backend Developer & ML Engineer</p>
+                    <div class="responsibilities">
+                        <p><strong>Responsibilities:</strong></p>
+                        <ul>
+                            <li>Machine Learning model development and training</li>
+                            <li>Flask backend architecture and API development</li>
+                            <li>Database design and data preprocessing</li>
+                            <li>Algorithm optimization and performance tuning</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="team-member">
+                <div class="member-photo">
+                    <div class="avatar-placeholder">
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+                <div class="member-info">
+                    <h4>Pushkar Bhoge</h4>
+                    <p class="roll-number">125B2C006</p>
+                    <p class="role"><i class="fas fa-palette"></i> Frontend Developer & UI/UX Designer</p>
+                    <div class="responsibilities">
+                        <p><strong>Responsibilities:</strong></p>
+                        <ul>
+                            <li>User interface design and implementation</li>
+                            <li>Responsive web design and CSS styling</li>
+                            <li>JavaScript functionality and user interactions</li>
+                            <li>User experience optimization and testing</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="team-member">
+                <div class="member-photo">
+                    <div class="avatar-placeholder">
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+                <div class="member-info">
+                    <h4>Pranav Khade</h4>
+                    <p class="roll-number">125B2C007</p>
+                    <p class="role"><i class="fas fa-database"></i> Data Analyst & System Integrator</p>
+                    <div class="responsibilities">
+                        <p><strong>Responsibilities:</strong></p>
+                        <ul>
+                            <li>Medical data collection and validation</li>
+                            <li>System integration and testing</li>
+                            <li>External API integration and documentation</li>
+                            <li>Quality assurance and bug fixing</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tech Stack -->
+    <div class="about-section">
+        <div class="section-header">
+            <h2><i class="fas fa-tools"></i> Technology Stack</h2>
+        </div>
+        <div class="tech-grid">
+            <div class="tech-category">
+                <h4><i class="fas fa-server"></i> Backend</h4>
+                <div class="tech-items">
+                    <div class="tech-item">
+                        <i class="fab fa-python"></i>
+                        <span>Python 3.8+</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-flask"></i>
+                        <span>Flask Framework</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-brain"></i>
+                        <span>Scikit-learn</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Pandas & NumPy</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tech-category">
+                <h4><i class="fas fa-paint-brush"></i> Frontend</h4>
+                <div class="tech-items">
+                    <div class="tech-item">
+                        <i class="fab fa-html5"></i>
+                        <span>HTML5</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fab fa-css3-alt"></i>
+                        <span>CSS3</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fab fa-js-square"></i>
+                        <span>JavaScript</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fab fa-bootstrap"></i>
+                        <span>Bootstrap 5</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tech-category">
+                <h4><i class="fas fa-database"></i> Data & ML</h4>
+                <div class="tech-items">
+                    <div class="tech-item">
+                        <i class="fas fa-file-csv"></i>
+                        <span>CSV Datasets</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-robot"></i>
+                        <span>SVM Algorithm</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-file-archive"></i>
+                        <span>Pickle Serialization</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-file-pdf"></i>
+                        <span>ReportLab PDF</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tech-category">
+                <h4><i class="fas fa-external-link-alt"></i> External APIs</h4>
+                <div class="tech-items">
+                    <div class="tech-item">
+                        <i class="fab fa-wikipedia-w"></i>
+                        <span>Wikipedia API</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fab fa-youtube"></i>
+                        <span>YouTube Search</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-pills"></i>
+                        <span>PharmEasy Integration</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fab fa-font-awesome"></i>
+                        <span>FontAwesome Icons</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Statistics -->
+    <div class="about-section">
+        <div class="section-header">
+            <h2><i class="fas fa-chart-bar"></i> Project Statistics</h2>
+        </div>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">132</div>
+                <div class="stat-label">Medical Symptoms</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">41</div>
+                <div class="stat-label">Disease Predictions</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">5</div>
+                <div class="stat-label">Recommendation Categories</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">3</div>
+                <div class="stat-label">Team Members</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<script>
+    function toggleTheme() {
+        const body = document.body;
+        const themeIcon = document.getElementById('theme-icon');
+        
+        if (body.getAttribute('data-theme') === 'dark') {
+            body.removeAttribute('data-theme');
+            themeIcon.className = 'fas fa-moon';
+            localStorage.setItem('theme', 'light');
+        } else {
+            body.setAttribute('data-theme', 'dark');
+            themeIcon.className = 'fas fa-sun';
+            localStorage.setItem('theme', 'dark');
+        }
+    }
+
+    // Load saved theme
+    document.addEventListener('DOMContentLoaded', function() {
+        const savedTheme = localStorage.getItem('theme');
+        const themeIcon = document.getElementById('theme-icon');
+        
+        if (savedTheme === 'dark') {
+            document.body.setAttribute('data-theme', 'dark');
+            themeIcon.className = 'fas fa-sun';
+        }
+    });
+</script>
+  </body>
+</html>
