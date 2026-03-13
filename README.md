@@ -84,9 +84,9 @@ http://localhost:5000
 
 **Computer Engineering (AI & ML) - PCCOE Pune**
 
-- **Vrushabh Hirab** (125B2C005) - Backend & ML Engineer
+- **Vrushabh Hirab** (125B2C005) - Data Analyst & System Integrator
 - **Pushkar Bhoge** (125B2C006) - Frontend & UI/UX Designer  
-- **Pranav Khade** (125B2C007) - Data Analyst & System Integrator
+- **Pranav Khade** (125B2C007) - Backend & ML Engineer
 
 ## 📁 Project Structure
 
