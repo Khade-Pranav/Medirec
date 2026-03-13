@@ -1,6 +1,13 @@
 [
   {
     "symptoms": [
+      "pain_behind_the_eyes"
+    ],
+    "disease": "Urinary tract infection",
+    "timestamp": "2026-03-13 23:40:23"
+  },
+  {
+    "symptoms": [
       "blister",
       "red_sore_around_nose",
       "yellow_crust_ooze"
